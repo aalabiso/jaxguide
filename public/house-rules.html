@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Rules — 5411 Burdette Road, Jacksonville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  body { background: var(--cream); }
+
+  .rules-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+  }
+
+  .rules-wrapper .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .rules-wrapper h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--charcoal);
+    border-bottom: 4px solid var(--orange);
+    padding-bottom: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .rules-intro {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-bottom: 30px;
+    color: var(--warm-gray);
+  }
+
+  .rules-stats {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    border-radius: 12px;
+    padding: 24px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    max-width: 500px;
+  }
+
+  .rules-stats .stat { text-align: center; }
+  .rules-stats .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--orange);
+    line-height: 1.1;
+  }
+  .rules-stats .stat-label {
+    font-size: 12px;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .rules-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .rules-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .rules-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .rules-card-bar { height: 4px; background: var(--teal); }
+  .rules-card-body { padding: 20px; }
+  .rules-card-emoji { font-size: 24px; margin-bottom: 8px; }
+  .rules-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .rules-card-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  .rules-highlight {
+    background: linear-gradient(90deg, #FDE8D8 0%, #FFF0E5 100%);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .rules-highlight .hs-icon { font-size: 24px; flex-shrink: 0; }
+  .rules-highlight p { font-size: 15px; line-height: 1.6; }
+  .rules-highlight strong { color: var(--orange); }
+
+  .rules-fact {
+    background: #EDF2F6;
+    border-left: 4px solid var(--orange);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .rules-fact-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .rules-fact p { font-size: 15px; line-height: 1.6; color: #333; }
+
+  .rules-closing {
+    background: #FFF8EB;
+    border: 2px dashed var(--gold);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .rules-closing p { font-size: 15px; line-height: 1.6; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .rules-wrapper { padding: 30px 16px 60px; }
+    .rules-wrapper h1 { font-size: 32px; }
+    .rules-stats { flex-direction: column; gap: 16px; }
+    .rules-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rules-wrapper">
+  <span class="section-label">A Few Things to Know</span>
+  <h1>House Rules</h1>
+
+  <p class="rules-intro">We want you to enjoy your stay, not read a rulebook! Just treat the space with respect and leave it in the condition you found it. If something breaks or isn't working right, no worries — just give us a heads up so we can take care of it.</p>
+
+  <div class="rules-stats">
+    <div class="stat"><div class="stat-num">3 PM</div><div class="stat-label">Check-in</div></div>
+    <div class="stat"><div class="stat-num">11 AM</div><div class="stat-label">Check-out</div></div>
+    <div class="stat"><div class="stat-num">Next Door</div><div class="stat-label">Your Hosts</div></div>
+  </div>
+
+  <div class="rules-section-title">The Essentials</div>
+
+  <div class="rules-cards">
+    <div class="rules-card"><div class="rules-card-bar"></div><div class="rules-card-body">
+      <div class="rules-card-emoji">🚗</div>
+      <div class="rules-card-title">Parking</div>
+      <div class="rules-card-desc">Pull into the driveway between 5411 (little house) and 5401 (big house). Park in the spot closest to 5411 and leave room for other vehicles to enter and exit at the main house.</div>
+    </div></div>
+
+    <div class="rules-card"><div class="rules-card-bar"></div><div class="rules-card-body">
+      <div class="rules-card-emoji">🧺</div>
+      <div class="rules-card-title">Laundry</div>
+      <div class="rules-card-desc">The washer is just outside the exterior bathroom door, to the left. The key is hanging inside the bathroom. Detergent and supplies are stored under the bathroom sink.</div>
+    </div></div>
+
+    <div class="rules-card"><div class="rules-card-bar"></div><div class="rules-card-body">
+      <div class="rules-card-emoji">🚽</div>
+      <div class="rules-card-title">Plumbing</div>
+      <div class="rules-card-desc">Please only flush toilet paper — no wipes, paper towels, or anything else, even if labeled "flushable." Our pipes are a bit sensitive and we want everything running smoothly for you!</div>
+    </div></div>
+
+    <div class="rules-card"><div class="rules-card-bar"></div><div class="rules-card-body">
+      <div class="rules-card-emoji">🔑</div>
+      <div class="rules-card-title">Lockup</div>
+      <div class="rules-card-desc">Please lock the door when you leave and when you go to bed. Check-in details and door codes are provided in your booking confirmation message.</div>
+    </div></div>
+  </div>
+
+  <div class="rules-highlight">
+    <div class="hs-icon">🚭</div>
+    <p><strong>Strictly No Smoking or Vaping.</strong> Smoking or vaping of any kind — including cigarettes, e-cigarettes, vaping devices, and cannabis — is <strong>prohibited inside the guest house and on the property.</strong> Violation will result in a <strong>$250 deep cleaning fee</strong> to restore the space for future guests.</p>
+  </div>
+
+  <div class="rules-fact">
+    <div class="rules-fact-label">💡 Good to Know</div>
+    <p>We're just next door at the main house — so if you need absolutely anything or have any questions during your stay, don't hesitate to reach out. We're happy to help with recommendations, directions, or anything at all.</p>
+  </div>
+
+  <div class="rules-closing">
+    <p>😊 <strong>That's it!</strong> No long list of rules here. We just ask that you treat the place like your own, have a wonderful time, and enjoy everything Jacksonville has to offer. We're so glad to have you.</p>
+    <p style="margin-top: 10px; font-style: italic; color: #5C6670;">— Alex & Princess</p>
+  </div>
+
+  <a href="index.html" class="back-link">← Back to the Full Jacksonville Guide</a>
+</div>
+
+</body>
+</html>
