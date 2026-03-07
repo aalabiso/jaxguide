@@ -1,0 +1,74 @@
+{
+  "coverPageHeight": 1056,
+  "coverPageBottom": 1056,
+  "qrRowTop": 677.15625,
+  "qrRowBottom": 766.8125,
+  "qrRowHeight": 89.65625,
+  "overflowing": false,
+  "overflowBy": -289.1875,
+  "totalContentHeight": 1056,
+  "images": [
+    {
+      "rect": {
+        "x": 319.546875,
+        "y": 677.15625,
+        "width": 70,
+        "height": 70,
+        "top": 677.15625,
+        "right": 389.546875,
+        "bottom": 747.15625,
+        "left": 319.546875
+      },
+      "src": "qr-web-guide.png",
+      "complete": true,
+      "naturalWidth": 620
+    },
+    {
+      "rect": {
+        "x": 424,
+        "y": 677.15625,
+        "width": 70,
+        "height": 70,
+        "top": 677.15625,
+        "right": 494,
+        "bottom": 747.15625,
+        "left": 424
+      },
+      "src": "qr-events-white.png",
+      "complete": true,
+      "naturalWidth": 620
+    }
+  ],
+  "children": [
+    {
+      "className": "cover-eyebrow",
+      "bottom": 310.25,
+      "height": 21.0625
+    },
+    {
+      "className": "",
+      "bottom": 445.09375,
+      "height": 118.84375
+    },
+    {
+      "className": "cover-sub",
+      "bottom": 493.46875,
+      "height": 37.1875
+    },
+    {
+      "className": "cover-tagline",
+      "bottom": 527.328125,
+      "height": 21.0625
+    },
+    {
+      "className": "cover-badges",
+      "bottom": 648.359375,
+      "height": 81.03125
+    },
+    {
+      "className": "cover-qr-row",
+      "bottom": 766.8125,
+      "height": 89.65625
+    }
+  ]
+}

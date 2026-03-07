@@ -111,7 +111,7 @@
   #hero {
     height: 100vh;
     background: linear-gradient(160deg, rgba(0,91,106,0.75) 0%, rgba(26,75,110,0.65) 50%, rgba(232,114,42,0.4) 100%),
-      url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg/1400px-Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg') center/cover;
+      url('../images/cover-skyline.jpg') center/cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,6 +173,34 @@
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.02em;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .hero-pdf-link {
+    display: inline-block;
+    padding: 14px 32px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 30px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .hero-pdf-link:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.5);
   }
 
   /* ── SECTION HEADERS ── */

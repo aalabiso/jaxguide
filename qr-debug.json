@@ -1,0 +1,77 @@
+{
+  "images": [
+    {
+      "src": "file:///C:/Users/aalab/OneDrive/Desktop/Jax%20Guide/print-sources/images/qr-web-guide.png",
+      "alt": "QR Code - Online Guide",
+      "complete": true,
+      "naturalWidth": 620,
+      "naturalHeight": 620,
+      "offsetWidth": 70,
+      "offsetHeight": 70,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "parentDisplay": "flex",
+      "parentVisibility": "visible",
+      "rect": {
+        "x": 319.546875,
+        "y": 677.15625,
+        "width": 70,
+        "height": 70,
+        "top": 677.15625,
+        "right": 389.546875,
+        "bottom": 747.15625,
+        "left": 319.546875
+      }
+    },
+    {
+      "src": "file:///C:/Users/aalab/OneDrive/Desktop/Jax%20Guide/print-sources/images/qr-events-white.png",
+      "alt": "QR Code - Events",
+      "complete": true,
+      "naturalWidth": 620,
+      "naturalHeight": 620,
+      "offsetWidth": 70,
+      "offsetHeight": 70,
+      "display": "block",
+      "visibility": "visible",
+      "opacity": "1",
+      "parentDisplay": "flex",
+      "parentVisibility": "visible",
+      "rect": {
+        "x": 424,
+        "y": 677.15625,
+        "width": 70,
+        "height": 70,
+        "top": 677.15625,
+        "right": 494,
+        "bottom": 747.15625,
+        "left": 424
+      }
+    }
+  ],
+  "coverInfo": {
+    "backgroundImage": "linear-gradient(160deg, rgba(0, 91, 106, 0.75) 0%, rgba(26, 75, 110, 0.65) 50%, rgba(232, 114, 42, 0.4) 100%), url(\"file:///C:/Users/aalab/OneDrive/Desktop/Jax%20Guide/print-sources/images/cover-skyli",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "webkitPrintColorAdjust": "exact",
+    "printColorAdjust": "exact",
+    "width": 816,
+    "height": 1056,
+    "overflow": "visible"
+  },
+  "qrSection": {
+    "display": "flex",
+    "visibility": "visible",
+    "rect": {
+      "x": 319.546875,
+      "y": 677.15625,
+      "width": 176.90625,
+      "height": 89.65625,
+      "top": 677.15625,
+      "right": 496.453125,
+      "bottom": 766.8125,
+      "left": 319.546875
+    },
+    "overflow": "visible",
+    "pageHeight": 1056
+  }
+}
