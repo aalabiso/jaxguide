@@ -12,6 +12,7 @@ async function main() {
     const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
     const htmlFile = path.join(projectRoot, 'house-rules', 'house-rules.html');
     const pdfFile = path.join(projectRoot, 'house-rules', 'Jacksonville-House-Rules.pdf');
+    const publicPdf = path.join(projectRoot, 'public', 'Jacksonville-House-Rules.pdf');
 
     console.log('Generating House Rules PDF...');
 
@@ -38,6 +39,9 @@ async function main() {
 
     const stats = fs.statSync(pdfFile);
     console.log(`PDF generated: ${(stats.size / 1024).toFixed(0)}KB`);
+
+    fs.copyFileSync(pdfFile, publicPdf);
+    console.log(`Copied to public/`);
 
     await browser.close();
     console.log('Done!');
