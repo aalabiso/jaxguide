@@ -18,7 +18,7 @@ async function main() {
     }
 
     const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-    const htmlFile = path.join(projectRoot, 'jacksonville-guide-print.html');
+    const htmlFile = path.join(projectRoot, 'print-sources', 'main-guide.html');
     const pdfFile = path.join(projectRoot, 'public', 'Jacksonville-Guide.pdf');
 
     log(`HTML source: ${htmlFile}`);

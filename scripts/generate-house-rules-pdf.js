@@ -10,8 +10,8 @@ async function main() {
     }
 
     const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-    const htmlFile = path.join(projectRoot, 'house-rules', 'house-rules.html');
-    const pdfFile = path.join(projectRoot, 'house-rules', 'Jacksonville-House-Rules.pdf');
+    const htmlFile = path.join(projectRoot, 'print-sources', 'house-rules.html');
+    const pdfFile = path.join(projectRoot, 'print-sources', 'Jacksonville-House-Rules.pdf');
     const publicPdf = path.join(projectRoot, 'public', 'Jacksonville-House-Rules.pdf');
 
     console.log('Generating House Rules PDF...');

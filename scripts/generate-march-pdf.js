@@ -10,8 +10,8 @@ async function main() {
     }
 
     const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-    const htmlFile = path.join(projectRoot, 'monthly-events', 'march-events.html');
-    const pdfFile = path.join(projectRoot, 'monthly-events', 'Jacksonville-March-2026-Events.pdf');
+    const htmlFile = path.join(projectRoot, 'print-sources', 'march-events.html');
+    const pdfFile = path.join(projectRoot, 'print-sources', 'Jacksonville-March-2026-Events.pdf');
     const publicPdf = path.join(projectRoot, 'public', 'Jacksonville-March-2026-Events.pdf');
 
     console.log('Generating March Events PDF...');

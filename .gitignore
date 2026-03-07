@@ -1,2 +1,5 @@
 node_modules/
-*.pdf
+*.zip
+
+# PDFs in print-sources/ are regenerated artifacts
+print-sources/*.pdf

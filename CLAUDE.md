@@ -15,35 +15,28 @@ The long-term vision is to productize this into **Stadius** (Stay + Radius) — 
 ```
 jaxguide/
 ├── CLAUDE.md                          ← THIS FILE — project context for Claude sessions
-├── jacksonville-guide-print.html      ← Print source HTML (17 pages, 8.5x11in layout)
-├── jacksonville-guide-web.html        ← Original single-file web version (reference copy)
-├── images/                            ← Source images used by print HTML
-│   ├── spiritualized-life-hurricane-irma.jpg
-│   ├── southbank-riverwalk.jpg
-│   ├── jaguars-everbank-stadium.png
-│   ├── jumbo-shrimp-vystar-ballpark.png
-│   ├── icemen-hockey-arena.webp
-│   ├── tpc-sawgrass-17th-hole.jpg
-│   ├── florida-theatre.jpg
-│   ├── cummer-museum-gardens.jpg
-│   ├── jacksonville-aerial-st-johns-river.jpg
-│   ├── jacksonville-zoo-gardens.avif
-│   ├── jacksonville arboretum.jpg
-│   └── jacksonville jumbo shrimp game.png
+├── print-sources/                     ← All print-ready HTML + images (NOT deployed)
+│   ├── main-guide.html                ← Main guide print HTML (19 pages, 8.5×11in)
+│   ├── house-rules.html               ← House rules print HTML (1 page)
+│   ├── march-events.html              ← March 2026 events print HTML (2 pages)
+│   └── images/                        ← Source images used by print HTML files
 ├── public/                            ← WEB DEPLOYMENT ROOT — deploy this folder
-│   ├── index.html                     ← Responsive web guide (references assets/)
-│   ├── Jacksonville-Guide.pdf         ← Downloadable print PDF
+│   ├── index.html                     ← Responsive web guide
+│   ├── house-rules.html               ← Standalone web house rules page
+│   ├── events/
+│   │   └── index.html                 ← March events web page (served at /events)
+│   ├── Jacksonville-Guide.pdf         ← Main guide PDF (with QR code)
+│   ├── Jacksonville-House-Rules.pdf   ← House rules PDF
+│   ├── Jacksonville-March-2026-Events.pdf ← March events PDF (with QR code)
 │   └── assets/
 │       ├── css/style.css              ← Extracted stylesheet
 │       ├── js/main.js                 ← Scroll animations, back-to-top, nav behavior
-│       ├── images/                    ← Copy of all images for web version
+│       ├── images/                    ← All images for web version
 │       └── fonts/                     ← Empty (using Google Fonts CDN)
 ├── scripts/
-│   ├── generate-print-pdf.js          ← Puppeteer script: print HTML → PDF
-│   └── generate-march-pdf.js          ← Puppeteer script: monthly events HTML → PDF
-├── monthly-events/
-│   ├── march-events.html              ← March 2026 events (2-page print layout)
-│   └── Jacksonville-March-2026-Events.pdf
+│   ├── generate-print-pdf.js          ← Puppeteer: main-guide.html → PDF
+│   ├── generate-house-rules-pdf.js    ← Puppeteer: house-rules.html → PDF
+│   └── generate-march-pdf.js          ← Puppeteer: march-events.html → PDF
 ├── docs/
 │   └── PRODUCT-SPEC-Stadius.md        ← Full product spec for the Stadius SaaS app
 ├── package.json                       ← Node deps (puppeteer-core)
@@ -57,21 +50,23 @@ jaxguide/
 
 ### Print PDF Generation
 
-The print guide is a single HTML file (`jacksonville-guide-print.html`) with 17 `<div>` elements, each exactly 8.5in × 11in with `overflow: hidden` and `page-break-after: always`. Puppeteer renders this to a pixel-perfect PDF.
+All print source HTML lives in `print-sources/`. The main guide (`main-guide.html`) has 19 `<div>` elements, each exactly 8.5in × 11in with `overflow: hidden` and `page-break-after: always`. Puppeteer renders these to pixel-perfect PDFs.
 
-**To regenerate the PDF after editing the print HTML:**
+**To regenerate PDFs after editing:**
 ```powershell
-cd D:\projects\jaxguide
-node scripts/generate-print-pdf.js
+cd "C:\Users\aalab\OneDrive\Desktop\Jax Guide"
+node scripts/generate-print-pdf.js        # Main guide → public/Jacksonville-Guide.pdf
+node scripts/generate-house-rules-pdf.js   # House rules → public/Jacksonville-House-Rules.pdf
+node scripts/generate-march-pdf.js         # March events → public/Jacksonville-March-2026-Events.pdf
 ```
 
-Output goes to `public/Jacksonville-Guide.pdf`. The script uses `puppeteer-core` with the system Chrome installation at `C:\Program Files\Google\Chrome\Application\chrome.exe`.
+Each script outputs to both `print-sources/` (intermediate) and `public/` (deployed). The scripts use `puppeteer-core` with the system Chrome installation at `C:\Program Files\Google\Chrome\Application\chrome.exe`.
 
 **Key print HTML constraints:**
 - Each page div must not exceed 11in height — content that overflows is clipped (invisible in PDF)
 - `@page { size: 8.5in 11in; margin: 0; }` — zero-margin letter size
 - Padding is handled per-page: `padding: 0.5in 0.6in`
-- Images use relative paths to the `images/` folder (same directory level as the HTML)
+- Images use relative paths to `images/` (inside `print-sources/`)
 - Google Fonts are loaded via CDN `<link>` tags — requires network when generating PDF
 
 ### Web Version
@@ -90,19 +85,11 @@ The web version lives in `public/` and is what gets deployed. It's a responsive 
 - Edit `public/assets/js/main.js` for interactivity
 - Images are in `public/assets/images/`
 
-The original single-file version (`jacksonville-guide-web.html` in root) is kept as a reference but is NOT what gets deployed.
-
 ### Monthly Events
 
-Monthly events are standalone 2-page print PDFs. Each month gets its own HTML file in `monthly-events/`.
+Monthly events are standalone 2-page print PDFs. Print sources live in `print-sources/`, web versions in `public/events/`.
 
-**To generate a monthly events PDF:**
-```powershell
-cd D:\projects\jaxguide
-node scripts/generate-march-pdf.js
-```
-
-**To create a new month:** Duplicate `monthly-events/march-events.html`, update the content with that month's events, and create a corresponding `scripts/generate-{month}-pdf.js` (or make the script accept a month parameter).
+**To create a new month:** Duplicate `print-sources/march-events.html`, update the content, create a corresponding generation script, and create a web version in `public/events/`.
 
 ---
 
@@ -197,7 +184,7 @@ These are the reusable content blocks in the print HTML:
 ## Common Editing Tasks
 
 ### Add a new restaurant/brewery/attraction card
-1. Open `jacksonville-guide-print.html`
+1. Open `print-sources/main-guide.html`
 2. Find the relevant section (search for the page comment, e.g., `<!-- PAGE 9: MORE RESTAURANTS -->`)
 3. Copy an existing card block and modify the content
 4. **Watch page height** — if adding cards pushes content past 11in, it will be clipped in the PDF. Either remove a card or move content to a new page.
@@ -205,25 +192,23 @@ These are the reusable content blocks in the print HTML:
 6. Update the web version (`public/index.html`) with the same content change
 
 ### Update the web version after print changes
-The web version (`public/index.html`) and print version (`jacksonville-guide-print.html`) have the same content but different HTML structure. Changes to one do NOT automatically propagate to the other. After editing print content, manually update the corresponding section in `public/index.html`.
+The web version (`public/index.html`) and print version (`print-sources/main-guide.html`) have the same content but different HTML structure. Changes to one do NOT automatically propagate to the other. After editing print content, manually update the corresponding section in `public/index.html`.
 
 ### Add a new monthly events page
-1. Copy `monthly-events/march-events.html` as a template
+1. Copy `print-sources/march-events.html` as a template
 2. Update the month name, event cards, dates, and descriptions
-3. Create a new script or modify the existing one to point to the new HTML file
-4. Generate: `node scripts/generate-{month}-pdf.js`
+3. Create a corresponding generation script in `scripts/`
+4. Generate the PDF: `node scripts/generate-{month}-pdf.js`
+5. Create a web version in `public/events/`
 
 ### Add new images
-1. Place the image file in `images/` (for print HTML) AND `public/assets/images/` (for web)
+1. Place the image file in `print-sources/images/` (for print HTML) AND `public/assets/images/` (for web)
 2. Reference in print HTML as `src="images/filename.jpg"`
 3. Reference in web HTML as `src="assets/images/filename.jpg"`
 4. Recommended: use JPG for photos, PNG for graphics with transparency, WebP for modern optimization
 
 ### Deploy the web version
-The `public/` folder is a fully self-contained static site. Deploy it to any static host:
-- **Netlify/Vercel/Cloudflare Pages:** Point to the `public/` directory
-- **GitHub Pages:** Set the source to the `public/` folder
-- **S3/Spaces:** Upload the entire `public/` folder contents
+The `public/` folder is a fully self-contained static site deployed at **jaxguide.ninethree.co**. The GitHub repo is at `https://github.com/aalabiso/jaxguide`.
 
 ---
 
@@ -245,10 +230,4 @@ The full product spec for building this into a SaaS platform is at `docs/PRODUCT
 
 ## Git Setup Notes
 
-Recommended `.gitignore`:
-```
-node_modules/
-*.pdf
-```
-
-PDFs are generated artifacts — no need to version them. The HTML source files are what matter. Images should be committed since they're part of the content.
+`.gitignore` tracks PDFs in `public/` (needed for deployment) but ignores intermediate PDFs in `print-sources/`. The `node_modules/` and `*.zip` files are also ignored.
