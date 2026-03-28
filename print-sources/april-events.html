@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jacksonville — April Events 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #007B8A;
+    --teal-dark: #00596A;
+    --teal-light: #D4EDF0;
+    --ocean: #1A4B6E;
+    --sand: #F5E6C8;
+    --orange: #E8722A;
+    --orange-light: #F9A96E;
+    --coral: #E84E4E;
+    --green: #2D7D46;
+    --charcoal: #1C2B35;
+    --warm-gray: #5C6670;
+    --cream: #FFFDF7;
+    --gold: #C8922A;
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--charcoal);
+    font-size: 11px;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.5in 0.6in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── HEADER BANNER ── */
+  .month-banner {
+    background: linear-gradient(135deg, #005B6A 0%, #007B8A 60%, #1A4B6E 100%);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+  }
+  .month-banner-left { display: flex; align-items: center; gap: 0.8rem; }
+  .month-icon { font-size: 2.2rem; }
+  .month-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--orange-light); }
+  .month-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1.1; }
+  .month-year { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); margin-top:0.1rem; }
+  .month-banner-right { display: flex; align-items: center; gap: 1rem; }
+  .month-banner-weather { text-align: right; }
+  .month-banner-weather .tagline { font-size: 0.78rem; color: rgba(255,255,255,0.8); font-style: italic; }
+  .month-banner-weather .temp { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--orange-light); margin-top: 0.15rem; }
+  .month-banner-weather .temp-label { font-size: 0.6rem; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; }
+  .banner-qr { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+  .banner-qr svg { border-radius: 6px; width: 60px; height: 60px; overflow: hidden; }
+  .banner-qr-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.5rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); }
+
+  /* ── PAGE 2 MINI HEADER ── */
+  .page2-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--orange);
+  }
+  .page2-header .p2h-icon { font-size: 1.2rem; }
+  .page2-header .p2h-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+  .page2-header .p2h-subtitle { font-size: 0.65rem; color: var(--warm-gray); margin-left: auto; font-style: italic; }
+
+  /* ── FEATURED EVENT ── */
+  .featured-event {
+    background: linear-gradient(135deg, #1E5C32 0%, #2D7D46 100%);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    color: white;
+    margin-bottom: 0.7rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .featured-event-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .featured-event-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); }
+  .featured-event-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; line-height: 1.15; }
+  .featured-event-details { font-size: 0.78rem; color: rgba(255,255,255,0.85); margin-top: 0.25rem; line-height: 1.6; }
+
+  /* ── WEEK LABEL ── */
+  .week-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin: 0.7rem 0 0.4rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--teal-light);
+  }
+
+  /* ── EVENT CARDS ── */
+  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+  .event-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .event-card-bar { height: 4px; }
+  .event-card-body { padding: 0.55rem 0.75rem; }
+  .event-card-date { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.15rem; }
+  .event-card-name { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .event-card-desc { font-size: 0.72rem; line-height: 1.55; color: var(--warm-gray); }
+  .event-card-detail { font-size: 0.62rem; color: var(--teal); font-weight: 600; margin-top: 0.2rem; }
+
+  /* ── REUSED ELEMENTS ── */
+  .fun-fact {
+    background: #EDF2F6;
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin: 0.6rem 0;
+  }
+  .fun-fact-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.2rem; }
+  .fun-fact p { font-size: 0.78rem; line-height: 1.6; color: #333; }
+
+  .highlight-strip {
+    background: linear-gradient(90deg, #D4EDF0 0%, #E1EBF2 100%);
+    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    margin: 0.6rem 0;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .highlight-strip .hs-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .highlight-strip p { font-size: 0.78rem; line-height: 1.55; }
+  .highlight-strip strong { color: var(--orange); }
+
+  .trivia-box {
+    background: #FFF8EB;
+    border: 2px dashed var(--gold);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin: 0.6rem 0;
+  }
+  .trivia-box p { font-size: 0.78rem; line-height: 1.6; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: space-around;
+    background: #F0F1F3;
+    border-radius: 8px;
+    padding: 0.7rem 0.5rem;
+    margin: 0.6rem 0;
+  }
+  .stat { text-align: center; padding: 0 0.5rem; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--orange); }
+  .stat-label { font-size: 0.6rem; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── FOOTER ── */
+  .page-bottom {
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--warm-gray);
+    border-top: 1px solid #e0e0e0;
+    padding-top: 0.4rem;
+    margin-top: 0.6rem;
+  }
+  .page-bottom strong { color: var(--orange); }
+  .events-qr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+  .events-qr svg {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px;
+    width: 45px;
+    height: 45px;
+    image-rendering: pixelated;
+  }
+  .events-qr-text {
+    font-size: 0.6rem;
+    color: var(--warm-gray);
+    text-align: left;
+    line-height: 1.4;
+  }
+  .events-qr-text strong { color: var(--teal); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PAGE 1: APRIL EVENTS — Featured & Early Month -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" style="background: #FEFDFB;">
+
+  <!-- MONTH BANNER -->
+  <div class="month-banner">
+    <div class="month-banner-left">
+      <div class="month-icon">🌷</div>
+      <div>
+        <div class="month-label">What's Happening in Jax</div>
+        <div class="month-title">April 2026</div>
+        <div class="month-year">Jacksonville, Florida · The First Coast</div>
+      </div>
+    </div>
+    <div class="month-banner-right">
+      <div class="month-banner-weather">
+        <div class="tagline">Perfect spring weather!</div>
+        <div class="temp">78°–82°F</div>
+        <div class="temp-label">Average Temps</div>
+      </div>
+      <div class="banner-qr">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 148" width="60" height="60"> <rect x="0" y="0" width="148" height="148" fill="white" rx="6"/> <rect x="16" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="16" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="20" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="24" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="28" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="32" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="36" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="40" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="44" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="44" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="44" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="44" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="44" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="48" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="52" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="56" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="60" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="64" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="68" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="72" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="76" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="80" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="84" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="44" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="88" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="92" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="96" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="100" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="92" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="104" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="108" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="104" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="112" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="52" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="116" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="84" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="88" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="120" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="128" y="120" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="56" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="80" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="116" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="124" width="4" height="4" fill="#1C2B35"/> <rect x="16" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="20" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="24" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="28" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="32" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="36" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="40" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="48" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="60" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="64" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="68" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="72" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="76" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="96" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="100" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="108" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="112" y="128" width="4" height="4" fill="#1C2B35"/> <rect x="124" y="128" width="4" height="4" fill="#1C2B35"/> </svg>
+        <span class="banner-qr-label">ONLINE VERSION</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED: SPRINGING THE BLUES -->
+  <div class="featured-event">
+    <div class="featured-event-icon">🎸</div>
+    <div>
+      <div class="featured-event-label">⭐ Marquee Event of the Month</div>
+      <div class="featured-event-name">Springing The Blues Festival</div>
+      <div class="featured-event-details"><strong>April 10–12</strong> · Seawalk Pavilion & Latham Plaza, Jacksonville Beach — The 34th annual free oceanfront blues festival featuring world-class artists including Lil' Ed & the Blues Imperials, Vanessa Collier, Toronzo Cannon, Nikki Hill, and more. VIP wristbands available. Perfect spring weather makes this the signature Jacksonville Beach event. <strong>springingtheblues.com</strong></div>
+    </div>
+  </div>
+
+  <!-- WEEK 1: EARLY APRIL -->
+  <div class="week-label">📅 Early April · April 1–7</div>
+
+  <div class="card-grid-2">
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--ocean);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 1–5</div>
+        <div class="event-card-name">🦐 Jumbo Shrimp vs Space Cowboys</div>
+        <div class="event-card-desc">Triple-A baseball is back! The defending champs host Sugar Land for a 5-game homestand. Multiple game times — check jaxshrimp.com. Tickets from $5.</div>
+        <div class="event-card-detail">VyStar Ballpark</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--teal);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">WEDNESDAY, APRIL 1 · 5–9 PM</div>
+        <div class="event-card-name">🎨 First Wednesday ArtWalk</div>
+        <div class="event-card-desc">Free self-guided gallery walk through downtown since 2003. Open studios, live music, pop-up exhibits, food trucks. Hub at James Weldon Johnson Park.</div>
+        <div class="event-card-detail">📍 Downtown Jacksonville · Free Admission</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--ocean);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 2–4 · 7 PM</div>
+        <div class="event-card-name">🏒 Icemen vs. Everblades</div>
+        <div class="event-card-desc">ECHL hockey at VyStar Arena. "Hockey is for Everyone" night (Apr 4) and Margaritaville Night promotions. Bring a jacket — it drops to 54°F inside!</div>
+        <div class="event-card-detail">📍 VyStar Arena · icemen.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--coral);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">FRIDAY, APRIL 1 · 7 PM</div>
+        <div class="event-card-name">🎭 Ali Wong</div>
+        <div class="event-card-desc">Comedy superstar brings her hilarious live show to the historic Florida Theatre. One of the hottest comedy tours of the year.</div>
+        <div class="event-card-detail">📍 Florida Theatre · floridatheatre.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--gold);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">EVERY SATURDAY · 10 AM–3 PM</div>
+        <div class="event-card-name">🎪 Riverside Arts Market</div>
+        <div class="event-card-desc">100+ local artists, food trucks, live music under the Fuller Warren Bridge. Free admission, rain or shine. A Jacksonville institution not to be missed.</div>
+        <div class="event-card-detail">📍 Under Fuller Warren Bridge, Riverside · Free</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--orange);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">SATURDAY, APRIL 4 · 9 AM</div>
+        <div class="event-card-name">🐣 St. Augustine Easter Parade</div>
+        <div class="event-card-desc">Family-friendly Easter parade through historic downtown St. Augustine. Floats, music, costumes, and community fun. Just 45 min south of Jax.</div>
+        <div class="event-card-detail">📍 San Marco Avenue, St. Augustine · Free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT STRIP -->
+  <div class="highlight-strip">
+    <div class="hs-icon">🎶</div>
+    <p><strong>Live Music · Early April:</strong> Leonid & Friends at Florida Theatre (Apr 6, 8pm) · Demetri Martin at Ponte Vedra Concert Hall (Apr 4) · Zarna Garg at Ponte Vedra Concert Hall (Apr 3) · The Band Perry at Ponte Vedra Concert Hall (Apr 8)</p>
+  </div>
+
+  <!-- FUN FACT -->
+  <div class="fun-fact">
+    <div class="fun-fact-label">☀️ APRIL WEATHER</div>
+    <p>April is Jacksonville's sweet spot. Warm days in the low 80s, cool evenings around 60°F, low humidity, and mostly sunny skies. Perfect for beach days, outdoor dining, golf, and festival-going. Light layers for evenings, sunscreen for days.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-bottom">
+    <strong>JACKSONVILLE, FLORIDA</strong> · The Bold City · visitjacksonville.com · <strong>Page 1 of 2</strong> · Dates & details subject to change — always confirm before you go.
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PAGE 2: APRIL EVENTS — Mid & Late Month -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" style="background: #FEFDFB;">
+
+  <!-- PAGE 2 HEADER -->
+  <div class="page2-header">
+    <span class="p2h-icon">🌷</span>
+    <span class="p2h-title">April 2026 — Continued</span>
+    <span class="p2h-subtitle">Mid & late month events</span>
+  </div>
+
+  <!-- WEEK 2: MID APRIL -->
+  <div class="week-label">📅 Mid April · April 8–15</div>
+
+  <div class="card-grid-2">
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--coral);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 10–12</div>
+        <div class="event-card-name">🎸 Springing The Blues</div>
+        <div class="event-card-desc">See featured event on page 1. Three days of free blues music on the beach. International artists, food vendors, arts marketplace, kids' activities at Seawalk Pavilion.</div>
+        <div class="event-card-detail">📍 Seawalk Pavilion, Jacksonville Beach · springingtheblues.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--gold);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">FRIDAY, APRIL 10 · 7:30 PM</div>
+        <div class="event-card-name">🤠 Eric Church — Free The Machine Tour</div>
+        <div class="event-card-desc">Country superstar with Ashley McBryde. $1 from each ticket donated to Chief Cares foundation. One of the biggest concerts of the month.</div>
+        <div class="event-card-detail">📍 VyStar Veterans Memorial Arena · Tickets via Ticketmaster</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--coral);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">SATURDAY, APRIL 11 · 8 PM</div>
+        <div class="event-card-name">🎵 Samantha Fish</div>
+        <div class="event-card-desc">Blues/Americana powerhouse at the historic Florida Theatre. Part of an incredible blues week alongside Springing The Blues.</div>
+        <div class="event-card-detail">📍 Florida Theatre · floridatheatre.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--ocean);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 10–12</div>
+        <div class="event-card-name">🏒 Icemen Weekend Series</div>
+        <div class="event-card-desc">Three home games: vs. Savannah (Fri 7pm), vs. Atlanta Gladiators (Sat 7pm, Margaritaville Night), vs. Orlando Solar Bears (Sun 3pm).</div>
+        <div class="event-card-detail">📍 VyStar Veterans Memorial Arena · icemen.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3: LATE APRIL -->
+  <div class="week-label">📅 Late April · April 16–30</div>
+
+  <div class="card-grid-2">
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--teal);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 17–21</div>
+        <div class="event-card-name">💡 One Spark Festival</div>
+        <div class="event-card-desc">The World's Crowdfunding Festival returns! Free 5-day event across downtown showcasing artists, entrepreneurs, innovators. Live music, food, $300K+ in crowdfunding. Vote for your favorites!</div>
+        <div class="event-card-detail">📍 Downtown Jacksonville · onespark.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--coral);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">SUNDAY, APRIL 19 · 8 PM</div>
+        <div class="event-card-name">🎭 Bill Murray & His Blood Brothers</div>
+        <div class="event-card-desc">Yes, THAT Bill Murray. Comedy legend performs music with his band at the Florida Theatre. Rescheduled from December — don't miss it!</div>
+        <div class="event-card-detail">📍 Florida Theatre · floridatheatre.com</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--gold);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">MONDAY, APRIL 27 · 7 PM</div>
+        <div class="event-card-name">🎤 Barry Manilow — Last Jax Concert</div>
+        <div class="event-card-desc">Pop legend's farewell Jacksonville concert. "MANILOW: The Last Jacksonville Concert" — a once-in-a-lifetime event at VyStar Arena.</div>
+        <div class="event-card-detail">📍 VyStar Veterans Memorial Arena · Tickets via Ticketmaster</div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-card-bar" style="background-color: var(--orange);"></div>
+      <div class="event-card-body">
+        <div class="event-card-date">APRIL 30 (PARADE)</div>
+        <div class="event-card-name">🦐 Isle of Eight Flags Shrimp Festival</div>
+        <div class="event-card-desc">Historic Fernandina Beach kicks off its legendary Shrimp Festival weekend on Amelia Island. Parade, seafood, pirates, live music. Festival runs through May 3.</div>
+        <div class="event-card-detail">📍 Centre Street, Fernandina Beach · shrimpfestival.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT STRIP -->
+  <div class="highlight-strip">
+    <div class="hs-icon">🎶</div>
+    <p><strong>Live Music · Late April:</strong> Kenny Wayne Shepherd at Florida Theatre (Apr 15, 7pm) · Hardy with Mitchell Tenpenny at VyStar Arena (Apr 23, 7pm) · Phil Wickham with Tauren Wells at VyStar Arena (Apr 24, 7pm) · Maren Morris at Ponte Vedra Concert Hall (Apr 27–28)</p>
+  </div>
+
+  <!-- TRIVIA BOX -->
+  <div class="trivia-box">
+    <p>🌊 <strong>Beach Season Begins:</strong> April marks the unofficial start of beach season in Jacksonville Beach. Water temps rise to 70–72°F — warm enough for a dip! The beaches are less crowded than summer but the weather is just as good. · 🌿 <strong>Earth Day Tip:</strong> Join the community beach cleanup at Seawalk Pavilion on Saturday, April 18 at 9 AM. Supplies provided, volunteers welcome.</p>
+  </div>
+
+  <!-- FUN FACT -->
+  <div class="fun-fact">
+    <div class="fun-fact-label">🍽️ APRIL DINING TIP</div>
+    <p>Springing The Blues weekend transforms Jacksonville Beach into a food destination. Beyond the festival vendors, check out the restaurants along 1st Street and Beach Boulevard — many run special menus. Don't miss <strong>Safe Harbor Seafood</strong> for the freshest catch in town, or grab fish tacos at <strong>Taco Lu</strong> on the beach.</p>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Events This Month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Day Blues Fest</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Day Innovation Fest</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Icemen Games</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Springing Blues</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-bottom">
+    <strong>JACKSONVILLE, FLORIDA</strong> · The Bold City · visitjacksonville.com · <strong>Page 2 of 2</strong> · Dates & details subject to change — always confirm before you go.
+  </div>
+
+</div>
+
+</body>
+</html>

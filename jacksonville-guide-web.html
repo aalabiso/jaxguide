@@ -3,10 +3,964 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jacksonville Guide — Your Local Adventure</title>
+<title>Jacksonville Guide — Web Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  :root {
+    --teal: #007B8A;
+    --teal-dark: #00596A;
+    --teal-light: #D4EDF0;
+    --ocean: #1A4B6E;
+    --sand: #F5E6C8;
+    --sand-dark: #E8D4A6;
+    --orange: #E8722A;
+    --orange-light: #F9A96E;
+    --coral: #E84E4E;
+    --green: #2D7D46;
+    --charcoal: #1C2B35;
+    --warm-gray: #5C6670;
+    --cream: #FFFDF7;
+    --gold: #C8922A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.6;
+    background: white;
+  }
+
+  /* ── STICKY NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 2px solid var(--orange);
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 30px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    overflow-x: auto;
+    flex: 1;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    color: var(--orange);
+  }
+
+  .back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 99;
+    transition: opacity 0.3s;
+  }
+
+  .back-to-top.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back-to-top:hover {
+    background: var(--teal-dark);
+  }
+
+  /* ── HERO COVER ── */
+  #hero {
+    height: 100vh;
+    background: linear-gradient(160deg, rgba(0,91,106,0.75) 0%, rgba(26,75,110,0.65) 50%, rgba(232,114,42,0.4) 100%),
+      url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg/1400px-Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg') center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    padding: 40px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    margin-bottom: 30px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 2px 4px 12px rgba(0,0,0,0.4);
+  }
+
+  .hero-subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .hero-tagline {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1em;
+    margin-bottom: 50px;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-intro-full {
+    background: linear-gradient(135deg, #005B6A 0%, #007B8A 100%);
+    color: white;
+    padding: 100px 40px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .section-intro-full h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    margin-bottom: 30px;
+  }
+
+  .section-intro-full .intro-text {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    border-bottom: 4px solid var(--orange);
+    padding-bottom: 15px;
+    display: inline-block;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    background: #F0F1F3;
+    border-radius: 12px;
+    padding: 40px 30px;
+    margin: 40px 0;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CARDS GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+  }
+
+  @media (min-width: 1200px) {
+    .card-grid.col-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .card-color-bar {
+    height: 5px;
+    background: var(--teal);
+  }
+
+  .card-color-bar.orange { background: var(--orange); }
+  .card-color-bar.ocean { background: var(--ocean); }
+  .card-color-bar.green { background: var(--green); }
+  .card-color-bar.coral { background: var(--coral); }
+  .card-color-bar.gold { background: var(--gold); }
+
+  .card-body {
+    padding: 25px;
+  }
+
+  .card-emoji {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 6px 12px;
+    border: 1px solid var(--teal-light);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    background: #F0F9FA;
+  }
+
+  /* ── FEATURED IMAGE ── */
+  .featured-image {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 40px 0;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    height: 400px;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+    color: white;
+  }
+
+  .img-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .img-overlay p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* ── INFO BOXES ── */
+  .fun-fact, .trivia-box, .highlight-strip {
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+  }
+
+  .fun-fact {
+    background: #EDF2F6;
+    border-left: 4px solid var(--orange);
+  }
+
+  .fun-fact-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .fun-fact p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .trivia-box {
+    background: #FFF8EB;
+    border: 2px dashed var(--gold);
+  }
+
+  .trivia-box p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .highlight-strip {
+    background: linear-gradient(90deg, #D4EDF0 0%, #E1EBF2 100%);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .hs-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .highlight-strip p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── RESTAURANT CARDS ── */
+  .rest-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .rest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .rest-card-header {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .rest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rest-category {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+    margin-top: 8px;
+  }
+
+  .price-dots {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .rest-card-body {
+    padding: 20px;
+  }
+
+  .rest-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  .rest-must {
+    font-size: 12px;
+    color: var(--orange);
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  /* ── BREWERY CARDS ── */
+  .brewery-card {
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--teal);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .brewery-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .brewery-area {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .brewery-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .brewery-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  /* ── GOLF CARDS ── */
+  .golf-card {
+    background: white;
+    border-radius: 12px;
+    border-top: 4px solid var(--green);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .golf-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .golf-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .golf-badge {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .golf-info {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  /* ── VENUE CARDS ── */
+  .venue-card {
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--coral);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .venue-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .venue-type {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .venue-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .venue-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  /* ── KIDS CARDS ── */
+  .kids-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .kids-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .kids-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+  }
+
+  .kids-age {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .kids-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  /* ── TRIP CARDS ── */
+  .trip-card {
+    background: #EDF2F6;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .trip-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .trip-distance {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .trip-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+
+  .trip-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  /* ── EVENT TIMELINE ── */
+  .event-row {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .event-row:last-child {
+    border-bottom: none;
+  }
+
+  .event-month {
+    background: var(--orange);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 60px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+  }
+
+  .event-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: var(--charcoal);
+  }
+
+  .event-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  /* ── SPLIT FEATURE ── */
+  .split-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 30px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .split-feature img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .split-text {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .split-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: var(--charcoal);
+  }
+
+  .split-text p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+
+  .address {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 15px;
+    color: var(--teal);
+  }
+
+  /* ── SCROLL FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1C2B35;
+    color: white;
+    padding: 60px 40px 30px;
+    margin-top: 80px;
+  }
+
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .footer-section ul {
+    list-style: none;
+  }
+
+  .footer-section li {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer-section a {
+    color: var(--orange);
+    text-decoration: none;
+  }
+
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 30px;
+    text-align: center;
+  }
+
+  .footer-city {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 15px;
+  }
+
+  .footer-icons {
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    margin: 20px 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links {
+      gap: 15px;
+      font-size: 11px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+    }
+
+    .section {
+      padding: 60px 25px;
+    }
+
+    .section h2 {
+      font-size: 36px;
+    }
+
+    .section-intro-full h2 {
+      font-size: 36px;
+    }
+
+    .featured-image {
+      height: 250px;
+    }
+
+    .split-feature {
+      grid-template-columns: 1fr;
+    }
+
+    .split-text {
+      padding: 25px;
+    }
+
+    .stats-bar {
+      padding: 25px 20px;
+    }
+
+    .card-grid {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-container {
+      height: auto;
+      padding: 12px 15px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-size: 14px;
+    }
+
+    .nav-links {
+      gap: 10px;
+      width: 100%;
+      font-size: 10px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+    }
+
+    .hero-badges {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .badge {
+      width: 100%;
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+    }
+
+    .featured-image {
+      height: 200px;
+    }
+
+    .back-to-top {
+      width: 45px;
+      height: 45px;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -17,8 +971,6 @@
   <div class="nav-container">
     <a href="#hero" class="nav-logo">Jacksonville</a>
     <ul class="nav-links">
-      <li><a href="#welcome">Welcome</a></li>
-      <li><a href="#essentials">Essentials</a></li>
       <li><a href="#overview">Overview</a></li>
       <li><a href="#neighborhoods">Neighborhoods</a></li>
       <li><a href="#beaches">Beaches</a></li>
@@ -50,171 +1002,6 @@
       <div class="badge">🍽️ Fresh Seafood Capital</div>
       <div class="badge">🏈 3 Pro Sports Teams</div>
     </div>
-    <div class="hero-links">
-      <a href="Jacksonville-Guide.pdf" class="hero-pdf-link" download>
-        📄 Download Printable PDF Guide
-      </a>
-      <a href="events/april/" class="hero-pdf-link">
-        🗓️ April 2026 Events
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════ -->
-<!-- WELCOME SECTION -->
-<!-- ══════════════════════════════════════════════════ -->
-<section id="welcome" class="section fade-in">
-  <span class="section-label">Welcome Home</span>
-  <h2>Welcome to Jacksonville!</h2>
-
-  <p style="font-size: 18px; margin: 20px 0; max-width: 800px;">Thank you so much for choosing our home for your Jacksonville stay! We're thrilled to have you as our guest. We've put a lot of love into this place and this guide to make sure you have everything you need for an amazing time in the Bold City.</p>
-
-  <div style="position: relative; border-radius: 12px; overflow: hidden; max-width: 100%; margin: 30px 0;">
-    <img src="assets/images/property-house.avif" alt="Our home at 5411 Burdette Road" style="width: 100%; height: 350px; object-fit: cover; display: block;">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 30px 20px 20px;">
-      <h3 style="color: white; font-family: 'Playfair Display', serif; margin: 0 0 4px;">Your Jacksonville Home Base</h3>
-      <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 14px;">5411 Burdette Road · Arlington · Jacksonville, FL 32211</p>
-    </div>
-  </div>
-
-  <div class="highlight-strip">
-    <div class="hs-icon">📍</div>
-    <p><strong>Perfect Location:</strong> You're in <strong>Arlington</strong> — one of Jacksonville's most central neighborhoods. You're just <strong>15 minutes to the beaches</strong>, <strong>10 minutes to downtown</strong>, and within a short drive of every major attraction in the city. Everything you need is right at your fingertips.</p>
-  </div>
-
-  <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 30px 0 20px;">Fun Stuff Nearby</h3>
-
-  <div class="card-grid">
-    <div class="card"><div class="card-body">
-      <div class="card-emoji">🌿</div>
-      <h3 class="card-title">Jacksonville Arboretum</h3>
-      <p class="card-desc">120 acres of woodland trails and native habitats. A hidden gem just 8 minutes away — perfect for a morning walk or family adventure.</p>
-      <span class="card-tag"><a href="https://jacksonvillearboretum.org/" target="_blank" rel="noopener">8 min · 1445 Millcoe Rd</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <div class="card-emoji">🌊</div>
-      <h3 class="card-title">Reddie Point Preserve</h3>
-      <p class="card-desc">Stunning waterfront trails along the St. Johns River with boardwalks, kayak launches, and incredible sunset views. A true local gem.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/Reddie+Point+Preserve/" target="_blank" rel="noopener">5 min · 4499 Yachtsman Way</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <div class="card-emoji">🛹</div>
-      <h3 class="card-title">Kona Skatepark</h3>
-      <p class="card-desc">Legendary concrete skatepark — one of the oldest in the world. Lessons available for all ages and skill levels.</p>
-      <span class="card-tag"><a href="https://www.konaskatepark.com/" target="_blank" rel="noopener">10 min · 8739 Kona Ave</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <div class="card-emoji">🎬</div>
-      <h3 class="card-title">AMC Regency 24</h3>
-      <p class="card-desc">Full-service movie theater with dine-in seating and a bar. Perfect for a rainy day or a date night out.</p>
-      <span class="card-tag"><a href="https://www.amctheatres.com/movie-theatres/jacksonville/amc-regency-24" target="_blank" rel="noopener">5 min · 9451 Regency Square Blvd</a></span>
-    </div></div>
-  </div>
-
-  <div class="fun-fact" style="margin-top: 30px;">
-    <div class="fun-fact-label">💡 Host Tip</div>
-    <p>Hungry? <a href="https://bigalscheesesteaks.com/" target="_blank" rel="noopener"><strong>Big Al's Cheesesteaks</strong></a> (1350 University Blvd N) is right down the street for an incredible Philly cheesesteak. <a href="https://www.thedonutshoppejax.com/" target="_blank" rel="noopener"><strong>The Donut Shoppe</strong></a> (1535 University Blvd N) allegedly has the best donuts in all of Jacksonville — you've been warned, they're addictive.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════ -->
-<!-- ESSENTIALS SECTION -->
-<!-- ══════════════════════════════════════════════════ -->
-<section id="essentials" class="section fade-in">
-  <span class="section-label">Everything You Need</span>
-  <h2>Local Essentials</h2>
-
-  <p style="font-size: 18px; margin: 20px 0; max-width: 800px;">You're surrounded by everything you could need during your stay. Here's a quick reference for grocery stores, pharmacies, medical facilities, and other essentials — all within a 5–10 minute drive.</p>
-
-  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin: 30px 0 15px;">🛒 Grocery Stores</h3>
-
-  <div class="card-grid">
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Publix Super Market</h3>
-      <p class="card-desc">Full-service grocery with deli, bakery, and pharmacy. Excellent quality and selection.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/Publix+Super+Market/@30.3617,-81.5858,17z/" target="_blank" rel="noopener">5 min · 7117 Merrill Rd</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Winn-Dixie</h3>
-      <p class="card-desc">Budget-friendly full grocery store in College Park Shopping Center. Great weekly specials.</p>
-      <span class="card-tag"><a href="https://www.winndixie.com/storedetails/JACKSONVILLE/FL?search=96&zipcode=32211" target="_blank" rel="noopener">5 min · 999 University Blvd N</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Walmart Supercenter</h3>
-      <p class="card-desc">Everything under one roof. Groceries, household items, and more. Open late.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/Walmart+Supercenter/@30.3763,-81.5717,17z/" target="_blank" rel="noopener">7 min · 9890 Hutchinson Park Dr</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Dollar General</h3>
-      <p class="card-desc">Quick essentials, snacks, cleaning supplies, and basic groceries at budget prices.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/Dollar+General/@30.3497,-81.6087,17z/" target="_blank" rel="noopener">4 min · 999 University Blvd N</a></span>
-    </div></div>
-  </div>
-
-  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin: 30px 0 15px;">💊 Pharmacies</h3>
-
-  <div class="card-grid">
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Walgreens</h3>
-      <p class="card-desc">Pharmacy, toiletries, snacks, and basic essentials. Drive-through pharmacy available.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/Walgreens/@30.3397,-81.6137,17z/" target="_blank" rel="noopener">4 min · 11 University Blvd N</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">CVS Pharmacy</h3>
-      <p class="card-desc">Full pharmacy, MinuteClinic for minor health needs, plus everyday essentials.</p>
-      <span class="card-tag"><a href="https://www.google.com/maps/place/CVS+Pharmacy/@30.3525,-81.5636,17z/" target="_blank" rel="noopener">7 min · 7431 Atlantic Blvd</a></span>
-    </div></div>
-  </div>
-
-  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin: 30px 0 15px;">🏥 Medical & Urgent Care</h3>
-
-  <div class="card-grid">
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">CareSpot Urgent Care</h3>
-      <p class="card-desc">Walk-in urgent care for non-emergency needs. X-rays, labs, illness & injury treatment. No appointment needed.</p>
-      <span class="card-tag"><a href="https://www.carespot.com/carespot-urgent-care/arlington-cesery-jacksonville-fl/" target="_blank" rel="noopener">5 min · 1021 Cesery Blvd</a></span>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Memorial Hospital ER</h3>
-      <p class="card-desc">Full 24-hour emergency room with complete emergency services for any situation.</p>
-      <span class="card-tag"><a href="https://www.hcafloridahealthcare.com/locations/memorial-hospital" target="_blank" rel="noopener">8 min · 3625 University Blvd S</a></span>
-    </div></div>
-  </div>
-
-  <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); margin: 30px 0 15px;">⛽ Gas & Coffee</h3>
-
-  <div class="card-grid">
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Gas Stations</h3>
-      <p class="card-desc"><strong>Exxon</strong> on Arlington Rd (4 min) · <strong>Sunoco</strong> on Arlington Expy (5 min) · Multiple options along University Blvd and Atlantic Blvd.</p>
-    </div></div>
-
-    <div class="card"><div class="card-body">
-      <h3 class="card-title">Coffee Fix</h3>
-      <p class="card-desc"><a href="https://www.groundsofgracejax.com/" target="_blank" rel="noopener"><strong>Grounds of Grace</strong></a> — great local coffee spot. <a href="https://boldbeancoffee.com/" target="_blank" rel="noopener"><strong>Bold Bean Coffee</strong></a> — amazing local roaster with multiple Jax locations.</p>
-      <span class="card-tag"><a href="https://www.groundsofgracejax.com/" target="_blank" rel="noopener">4 min · 1633 University Blvd N</a></span>
-    </div></div>
-  </div>
-
-  <div class="highlight-strip" style="margin-top: 30px;">
-    <div class="hs-icon">📱</div>
-    <p><strong>Pro Tip:</strong> Save our address — <strong>5411 Burdette Rd, Jacksonville, FL 32211</strong> — in Google Maps or Apple Maps so you can always navigate back easily. The Regency/Arlington area has excellent cell coverage on all major carriers.</p>
-  </div>
-
-  <div class="stats-bar" style="margin-top: 30px;">
-    <div class="stat"><div class="stat-num">4 min</div><div class="stat-label">Nearest Pharmacy</div></div>
-    <div class="stat"><div class="stat-num">5 min</div><div class="stat-label">Nearest Grocery</div></div>
-    <div class="stat"><div class="stat-num">5 min</div><div class="stat-label">Nearest Gas</div></div>
-    <div class="stat"><div class="stat-num">8 min</div><div class="stat-label">Nearest ER</div></div>
   </div>
 </section>
 
@@ -294,7 +1081,7 @@
 
 <section class="section fade-in">
   <div class="featured-image">
-    <img src="assets/images/spiritualized-life-hurricane-irma.jpg" alt="Spiritualized Life statue">
+    <img src="images/spiritualized-life-hurricane-irma.jpg" alt="Spiritualized Life statue">
     <div class="img-overlay">
       <h3>"Spiritualized Life" at Memorial Park</h3>
       <p>Charles Adrian Pillars' 1924 bronze masterpiece — a winged figure atop a globe. Memorial Park honors Jacksonville's fallen from World War I.</p>
@@ -402,7 +1189,7 @@
   <p style="font-size: 18px; margin: 20px 0 30px; max-width: 800px;">Jacksonville is blessed with more coastline than any other Florida city, plus a sprawling network of rivers, marshes, nature preserves, and parks. This is an outdoor lover's paradise.</p>
 
   <div class="featured-image">
-    <img src="assets/images/southbank-riverwalk.jpg" alt="Southbank Riverwalk">
+    <img src="images/southbank-riverwalk.jpg" alt="Southbank Riverwalk">
     <div class="img-overlay">
       <h3>The Southbank Riverwalk</h3>
       <p>1.25 miles of scenic promenade along the St. Johns River, home to the Friendship Fountain and stunning skyline views at sunset.</p>
@@ -528,7 +1315,7 @@
   </div>
 
   <div class="featured-image" style="height: 250px;">
-    <img src="assets/images/southbank-riverwalk.jpg" alt="Jax waterways" style="object-position: center 60%;">
+    <img src="images/southbank-riverwalk.jpg" alt="Jax waterways" style="object-position: center 60%;">
     <div class="img-overlay">
       <h3>The St. Johns — Jacksonville's Defining Feature</h3>
       <p>One of the few rivers in North America that flows north, connecting every corner of the city.</p>
@@ -546,7 +1333,7 @@
 
 <section class="section fade-in">
   <div class="featured-image" style="height: 300px;">
-    <img src="assets/images/jaguars-everbank-stadium.png" alt="Jaguars at EverBank Stadium">
+    <img src="images/jaguars-everbank-stadium.png" alt="Jaguars at EverBank Stadium">
     <div class="img-overlay">
       <h3>A sea of teal at EverBank Stadium</h3>
       <p>Jacksonville's heartbeat. 69,000-seat stadium right on the river with in-ground pools and waterslides in the end zone.</p>
@@ -917,7 +1704,7 @@
 
 <section class="section fade-in">
   <div class="featured-image">
-    <img src="assets/images/tpc-sawgrass-17th-hole.jpg" alt="TPC Sawgrass Island Green">
+    <img src="images/tpc-sawgrass-17th-hole.jpg" alt="TPC Sawgrass Island Green">
     <div class="img-overlay">
       <h3>The Island Green at TPC Sawgrass</h3>
       <p>The famous 17th hole — perhaps the most recognizable par-3 in golf. This is in your backyard now.</p>
@@ -995,7 +1782,7 @@
 
   <div class="card-grid">
     <div class="split-feature">
-      <img src="assets/images/florida-theatre.jpg" alt="Florida Theatre">
+      <img src="images/florida-theatre.jpg" alt="Florida Theatre">
       <div class="split-text" style="background: var(--sand);">
         <h3 style="color: var(--charcoal);">The Florida Theatre</h3>
         <p style="color: var(--warm-gray);">1927 Mediterranean Revival masterpiece. Elvis performed here in 1956 — from the waist up only.</p>
@@ -1003,7 +1790,7 @@
       </div>
     </div>
     <div class="split-feature">
-      <img src="assets/images/cummer-museum-gardens.jpg" alt="Cummer Museum">
+      <img src="images/cummer-museum-gardens.jpg" alt="Cummer Museum">
       <div class="split-text" style="background: white;">
         <h3 style="color: var(--charcoal);">Cummer Museum & Gardens</h3>
         <p style="color: var(--warm-gray);">Geometric hedgerows, reflecting pool, and arched walls on the St. Johns. 4,000 years of art.</p>
@@ -1094,7 +1881,7 @@
   <p style="font-size: 18px; margin: 20px 0 30px; max-width: 800px;">Jacksonville is one of the best family destinations in the Southeast. Beaches, nature preserves, world-class zoo, interactive museums, endless free activities — you'll run out of days before you run out of things to do.</p>
 
   <div class="featured-image">
-    <img src="assets/images/jacksonville-zoo-gardens.avif" alt="Jacksonville Zoo">
+    <img src="images/jacksonville-zoo-gardens.avif" alt="Jacksonville Zoo">
     <div class="img-overlay">
       <h3>Jacksonville Zoo & Gardens</h3>
       <p>50+ acres featuring Range of the Jaguar, Dinosauria, splash ground, and botanical garden paths.</p>
@@ -1233,11 +2020,7 @@
       <div class="footer-tagline">The Bold City · The River City · Florida's First Coast</div>
       <p style="font-size: 14px; margin: 15px 0;">Your home away from home. We hope this guide helps you fall in love with our city the way we have.</p>
       <p style="font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Information current as of 2025–2026. Always confirm hours, prices, and event dates. <strong>visitjacksonville.com</strong></p>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 20px 0;">
-        <a href="Jacksonville-Guide.pdf" download style="display: inline-block; padding: 12px 28px; background: var(--orange); color: white; text-decoration: none; border-radius: 30px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; transition: background 0.3s;">📄 DOWNLOAD PRINTABLE PDF</a>
-        <a href="house-rules.html" style="display: inline-block; padding: 12px 28px; background: var(--teal); color: white; text-decoration: none; border-radius: 30px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; transition: background 0.3s;">📜 HOUSE RULES</a>
-        <a href="events/" style="display: inline-block; padding: 12px 28px; background: var(--ocean); color: white; text-decoration: none; border-radius: 30px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; transition: background 0.3s;">🌸 MARCH EVENTS</a>
-      </div>
+      <a href="Jacksonville-Guide.pdf" download style="display: inline-block; margin: 20px 0; padding: 12px 28px; background: var(--orange); color: white; text-decoration: none; border-radius: 30px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; transition: background 0.3s;">📄 DOWNLOAD PRINTABLE PDF</a>
       <div class="footer-icons">🌊 🌴 🏈 🦐 ⛳ 🍺 🎭 🎶 🚀</div>
       <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 20px;">Designed for responsive web browsing with all content from the print edition.</p>
     </div>
@@ -1246,7 +2029,40 @@
 
 <button class="back-to-top" id="backToTop" title="Back to top">⬆</button>
 
-<script src="assets/js/main.js"></script>
+<script>
+  // Scroll fade-in effect
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Back to top button
+  const backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
