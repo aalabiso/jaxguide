@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JU Student Guide — August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #007B8A;
+    --teal-dark: #00596A;
+    --teal-light: #D4EDF0;
+    --ocean: #1A4B6E;
+    --sand: #F5E6C8;
+    --orange: #E8722A;
+    --orange-light: #F9A96E;
+    --coral: #E84E4E;
+    --green: #2D7D46;
+    --charcoal: #1C2B35;
+    --warm-gray: #5C6670;
+    --cream: #FFFDF7;
+    --gold: #C8922A;
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--charcoal);
+    font-size: 11px;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.5in 0.6in;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── HEADER BANNER ── */
+  .month-banner {
+    background: linear-gradient(135deg, #005B6A 0%, #007B8A 60%, #1A4B6E 100%);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+  }
+  .month-banner-left { display: flex; align-items: center; gap: 0.8rem; }
+  .month-icon { font-size: 2.2rem; }
+  .month-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--orange-light); }
+  .month-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1.1; }
+  .month-year { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); margin-top:0.1rem; }
+  .month-banner-right { display: flex; align-items: center; gap: 1rem; }
+  .month-banner-weather { text-align: right; }
+  .month-banner-weather .tagline { font-size: 0.78rem; color: rgba(255,255,255,0.8); font-style: italic; }
+  .month-banner-weather .temp { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--orange-light); margin-top: 0.15rem; }
+  .month-banner-weather .temp-label { font-size: 0.6rem; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; }
+
+  /* ── PAGE 2 MINI HEADER ── */
+  .page2-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--orange);
+  }
+  .page2-header .p2h-icon { font-size: 1.2rem; }
+  .page2-header .p2h-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+  .page2-header .p2h-subtitle { font-size: 0.65rem; color: var(--warm-gray); margin-left: auto; font-style: italic; }
+
+  /* ── FEATURED EVENT ── */
+  .featured-event {
+    background: linear-gradient(135deg, #1E5C32 0%, #2D7D46 100%);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    color: white;
+    margin-bottom: 0.7rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .featured-event-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .featured-event-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); }
+  .featured-event-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; line-height: 1.15; }
+  .featured-event-details { font-size: 0.78rem; color: rgba(255,255,255,0.85); margin-top: 0.25rem; line-height: 1.6; }
+
+  /* ── WEEK LABEL ── */
+  .week-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin: 0.7rem 0 0.4rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--teal-light);
+  }
+
+  /* ── EVENT CARDS ── */
+  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+  .event-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .event-card-bar { height: 4px; }
+  .event-card-body { padding: 0.55rem 0.75rem; }
+  .event-card-date { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.15rem; }
+  .event-card-name { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .event-card-desc { font-size: 0.72rem; line-height: 1.55; color: var(--warm-gray); }
+  .event-card-detail { font-size: 0.62rem; color: var(--teal); font-weight: 600; margin-top: 0.2rem; }
+
+  /* ── REUSED ELEMENTS ── */
+  .fun-fact {
+    background: #EDF2F6;
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin: 0.6rem 0;
+  }
+  .fun-fact-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.2rem; }
+  .fun-fact p { font-size: 0.78rem; line-height: 1.6; color: #333; }
+
+  .highlight-strip {
+    background: linear-gradient(90deg, #D4EDF0 0%, #E1EBF2 100%);
+    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    margin: 0.6rem 0;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .highlight-strip .hs-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .highlight-strip p { font-size: 0.78rem; line-height: 1.55; }
+  .highlight-strip strong { color: var(--orange); }
+
+  .trivia-box {
+    background: #FFF8EB;
+    border: 2px dashed var(--gold);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin: 0.6rem 0;
+  }
+  .trivia-box p { font-size: 0.78rem; line-height: 1.6; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: space-around;
+    background: #F0F1F3;
+    border-radius: 8px;
+    padding: 0.7rem 0.5rem;
+    margin: 0.6rem 0;
+  }
+  .stat { text-align: center; padding: 0 0.5rem; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--orange); }
+  .stat-label { font-size: 0.6rem; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── FOOTER ── */
+  .page-bottom {
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--warm-gray);
+    border-top: 1px solid #e0e0e0;
+    padding-top: 0.4rem;
+    margin-top: 0.6rem;
+  }
+  .page-bottom strong { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PAGE 1: JU STUDENT GUIDE — Campus & Dining    -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" style="background: #FEFDFB;">
+
+  <!-- HEADER BANNER -->
+  <div class="month-banner">
+    <div class="month-banner-left">
+      <div class="month-icon">🐬</div>
+      <div>
+        <div class="month-label">Your Guide to Jacksonville University</div>
+        <div class="month-title">JU Student Guide</div>
+        <div class="month-year">Jacksonville, Florida · August 15–31, 2026</div>
+      </div>
+    </div>
+    <div class="month-banner-right">
+      <div class="month-banner-weather">
+        <div class="tagline">Welcome to the Bold City!</div>
+        <div class="temp">75°–92°F</div>
+        <div class="temp-label">Average Temps</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED: CAMPUS ESSENTIALS -->
+  <div class="featured-event">
+    <div class="featured-event-icon">🎓</div>
+    <div>
+      <div class="featured-event-label">📍 Campus Essentials</div>
+      <div class="featured-event-name">Jacksonville University</div>
+      <div class="featured-event-details"><strong>2800 University Blvd N</strong> · Jacksonville, FL 32211 · Private university on the St. Johns River, established 1934. <strong>Campus Security:</strong> (904) 256-7585 · <strong>Student Health Center:</strong> available on campus · <strong>Bookstore:</strong> ju.bncollege.com · <strong>Campus Map:</strong> ju.edu/locations</div>
+    </div>
+  </div>
+
+  <!-- KEY DATES -->
+  <div class="highlight-strip">
+    <div class="hs-icon">🗓️</div>
+    <p><strong>Key Dates:</strong> <strong>Aug 14</strong> — Upperclassmen Move-in (9am–12pm) · <strong>Aug 17</strong> — First Day of Fall Classes · <strong>Aug 21</strong> — Last day to add/drop courses · <strong>"Dolphin Dive In"</strong> — JU's fall orientation experience for first-year students</p>
+  </div>
+
+  <!-- DOLPHINS ATHLETICS -->
+  <div class="week-label">🏟️ JU Dolphins · Home Games During Your Stay</div>
+
+  <div class="card-grid-2">
+    <div class="event-card"><div class="event-card-bar" style="background:var(--ocean);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Thursday, August 20</div>
+      <div class="event-card-name">⚽ Women's Soccer vs. Georgia Southern</div>
+      <div class="event-card-desc">Dolphins home match — watch JU's women's soccer team kick off the season on campus. Free for students with JU ID.</div>
+      <div class="event-card-detail">📍 JU Campus · judolphins.com</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--green);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Late August TBA</div>
+      <div class="event-card-name">🏐 Volleyball Season Opener</div>
+      <div class="event-card-desc">The Dolphins open their 31-match season with non-conference tournament play. Check judolphins.com for dates and times as the schedule firms up.</div>
+      <div class="event-card-detail">📍 JU Campus · judolphins.com</div>
+    </div></div>
+  </div>
+
+  <!-- CAMPUS DINING -->
+  <div class="week-label">🍽️ Eating on Campus</div>
+
+  <div class="card-grid-2">
+    <div class="event-card"><div class="event-card-bar" style="background:var(--orange);"></div><div class="event-card-body">
+      <div class="event-card-name">🍔 Riverview Dining Hall</div>
+      <div class="event-card-desc">Main dining in Kinne Center — Kinne Corner, World Fare, Sizzle, Slice, Bistro 1934, Nellie's Deli, Harvest Greens, Viva la Vegan, plus Haymaker Coffee bar, soup, and desserts. Open 7 days.</div>
+      <div class="event-card-detail">📍 Kinne University Center</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--teal);"></div><div class="event-card-body">
+      <div class="event-card-name">☕ Starbucks & Chick-Fil-A</div>
+      <div class="event-card-desc">Full-service Starbucks open 7 days a week in Kinne Center. Chick-Fil-A also on campus. Flex Dollars from dining plans work at both.</div>
+      <div class="event-card-detail">📍 Kinne University Center</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--coral);"></div><div class="event-card-body">
+      <div class="event-card-name">🌮 Cantina Rio</div>
+      <div class="event-card-desc">Mexican restaurant at River House — tacos, nachos, quesadillas, and taco salads with views along the St. Johns River.</div>
+      <div class="event-card-detail">📍 River House</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--gold);"></div><div class="event-card-body">
+      <div class="event-card-name">📱 The Drop (Ghost Kitchen)</div>
+      <div class="event-card-desc">Multiple restaurant concepts in one spot. Order via GrubHub for pickup. Located in Oak Hall.</div>
+      <div class="event-card-detail">📍 Oak Hall · Order via GrubHub</div>
+    </div></div>
+  </div>
+
+  <!-- FUN FACT -->
+  <div class="fun-fact">
+    <div class="fun-fact-label">🎨 On Campus Art</div>
+    <p>The <strong>Alexander Brest Gallery</strong> opens a new solo exhibition — Paul F. Yount's <em>"SILENCE.silent"</em> — running <strong>August 17 – September 30</strong>. Free admission, Mon–Fri 9am–4:30pm. One of JU's hidden gems right on campus.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-bottom">
+    <strong>Your Jacksonville Guide</strong> · Prepared for our Airbnb guests · August 2026 · Page 1 of 2
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PAGE 2: OFF CAMPUS & AROUND JAX               -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" style="background: #FEFDFB;">
+
+  <div class="page2-header">
+    <span class="p2h-icon">🌴</span>
+    <span class="p2h-title">Off Campus & Around Jax</span>
+    <span class="p2h-subtitle">Restaurants, attractions & city events</span>
+  </div>
+
+  <!-- NEARBY RESTAURANTS -->
+  <div class="week-label" style="margin-top:0;">🍽️ Eats Near Campus · Arlington & Beyond</div>
+
+  <div class="card-grid-2">
+    <div class="event-card"><div class="event-card-bar" style="background:var(--orange);"></div><div class="event-card-body">
+      <div class="event-card-name">🍳 University Diner</div>
+      <div class="event-card-desc">Classic full-service diner minutes from JU. Fried green tomatoes, mushroom Swiss burgers, Greek omelets. Great prices, excellent service.</div>
+      <div class="event-card-detail">📍 5959 Merrill Rd · 5 min from campus</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--coral);"></div><div class="event-card-body">
+      <div class="event-card-name">🍖 The Bearded Pig</div>
+      <div class="event-card-desc">Jacksonville's favorite BBQ — slow-smoked brisket, pulled pork, and ribs with craft beer. Multiple locations.</div>
+      <div class="event-card-detail">📍 1224 King St (San Marco) · 10 min</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--teal);"></div><div class="event-card-body">
+      <div class="event-card-name">🍜 Hawkers Asian Street Food</div>
+      <div class="event-card-desc">Malaysian, Thai, Vietnamese, and Chinese street food in a hip atmosphere. Roti canai, laksa, and pad thai are must-tries.</div>
+      <div class="event-card-detail">📍 1001 Park St (Five Points) · 15 min</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--green);"></div><div class="event-card-body">
+      <div class="event-card-name">🛍️ St. Johns Town Center</div>
+      <div class="event-card-desc">Jacksonville's 1.2M sq ft open-air shopping mecca — 150+ retailers and restaurants. Target to Tiffany & Co. Great dining options including Whiskey Cake, Cooper's Hawk, and The Cheesecake Factory.</div>
+      <div class="event-card-detail">📍 4663 River City Dr · 15 min from JU</div>
+    </div></div>
+  </div>
+
+  <!-- CITY EVENTS -->
+  <div class="week-label">🏈 What's Happening Around Jax</div>
+
+  <div class="card-grid-2">
+    <div class="event-card"><div class="event-card-bar" style="background:var(--ocean);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Saturday, August 15</div>
+      <div class="event-card-name">⚽ Sporting JAX vs. Indy Eleven</div>
+      <div class="event-card-desc">Jacksonville's new USL Championship soccer team at Hodges Stadium. Exciting atmosphere for the city's newest pro franchise.</div>
+      <div class="event-card-detail">📍 Hodges Stadium · sportingjax.com</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--teal);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Friday, August 21 · 7:30 PM</div>
+      <div class="event-card-name">🏈 Jaguars vs. Panthers — Preseason</div>
+      <div class="event-card-desc">Preseason football at EverBank Stadium. Affordable tickets and a great intro to NFL game-day in Jacksonville.</div>
+      <div class="event-card-detail">📍 EverBank Stadium · jaguars.com</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--orange);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Friday, August 28 · 7:30 PM</div>
+      <div class="event-card-name">🏈 Jaguars vs. Bucs — Preseason</div>
+      <div class="event-card-desc">Preseason finale against the in-state rival Buccaneers. Last chance to see roster battles before final cuts.</div>
+      <div class="event-card-detail">📍 EverBank Stadium · jaguars.com</div>
+    </div></div>
+
+    <div class="event-card"><div class="event-card-bar" style="background:var(--gold);"></div><div class="event-card-body">
+      <div class="event-card-date">📅 Every Saturday · 10 AM–3 PM</div>
+      <div class="event-card-name">🎪 Riverside Arts Market</div>
+      <div class="event-card-desc">150+ local makers, food trucks, and live music under the Fuller Warren Bridge. Free admission, rain or shine. A Jax must-do.</div>
+      <div class="event-card-detail">📍 715 Riverside Ave · Free</div>
+    </div></div>
+  </div>
+
+  <!-- TRIVIA BOX -->
+  <div class="trivia-box">
+    <p>🐬 <strong>About Jacksonville University:</strong> Founded in 1934, JU sits on a beautiful 260-acre campus along the St. Johns River. The Dolphins compete in NCAA Division I as part of the ASUN Conference. Famous alumni include NFL great Fred Taylor. The campus is in the Arlington neighborhood, about 10 minutes east of downtown Jacksonville.</p>
+  </div>
+
+  <!-- HIGHLIGHT STRIP -->
+  <div class="highlight-strip">
+    <div class="hs-icon">🏖️</div>
+    <p><strong>Beach Day:</strong> Jacksonville Beach is about 25 minutes from JU via Beach Blvd (US-90). The Atlantic is 82°F+ in August — perfect for swimming. Grab dinner at a beachside restaurant afterward. · <strong>Getting Around:</strong> JU is car-friendly, but Uber/Lyft are readily available throughout Jacksonville.</p>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">260</div><div class="stat-label">Acres on Campus</div></div>
+    <div class="stat"><div class="stat-num">25 min</div><div class="stat-label">To the Beach</div></div>
+    <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Shops at Town Center</div></div>
+    <div class="stat"><div class="stat-num">82°F</div><div class="stat-label">Ocean Temp</div></div>
+    <div class="stat"><div class="stat-num">$5</div><div class="stat-label">Shrimp Tix From</div></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-bottom">
+    <strong>Your Jacksonville Guide</strong> · Prepared for our Airbnb guests · August 2026 · Page 2 of 2
+  </div>
+
+</div>
+
+</body>
+</html>
